@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #si {
+            background-color: #4caf50;
+            color: white;
+            z-index: 10;
+        }
+
+        #no {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #mensaje-final {
+            display: none;
+            font-size: 2.5rem;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="contenido">
+        <img src="20260102_211958.jpg" alt="Nuestra Foto">
+        <h1>¿Quieres ser mi San Valentín? ❤️</h1>
+        
+        <div class="buttons">
+            <button id="si">¡SÍ!</button>
+            <button id="no">No</button>
+        </div>
+    </div>
+
+    <div id="mensaje-final">
+        ¡SABÍA QUE DIRÍAS QUE SÍ! 😍🌹
+    </div>
+
+    <script>
+        const btnSi = document.getElementById('si');
+        const btnNo = document.getElementById('no');
+        const contenido = document.getElementById('contenido');
+        const mensajeFinal = document.getElementById('mensaje-final');
+
+        let siSize = 1.2;
+        let noSize = 1.2;
+
+        btnNo.addEventListener('click', () => {
+            // Aumentar tamaño del botón SI
+            siSize += 0.5;
+            btnSi.style.transform = `scale(${siSize})`;
+            
+            // Reducir tamaño del botón NO
+            noSize -= 0.1;
+            btnNo.style.transform = `scale(${noSize})`;
+
+            // Si el botón SI es gigante, forzamos el click o cubrimos la pantalla
+            if (siSize > 8) {
+                btnSi.style.position = "fixed";
+                btnSi.style.top = "0";
+                btnSi.style.left = "0";
+                btnSi.style.width = "100vw";
+                btnSi.style.height = "100vh";
+                btnSi.style.display = "flex";
+                btnSi.style.alignItems = "center";
+                btnSi.style.justifyContent = "center";
+                btnSi.innerText = "¡SÍ! (Ya no tienes opción)";
+            }
+        });
+
+        btnSi.addEventListener('click', () => {
+            contenido.style.display = 'none';
+            mensajeFinal.style.display = 'block';
+            document.body.style.backgroundColor = '#ffcdd2';
+        });
+    </script>
+</body>
+</html>
